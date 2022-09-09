@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model File_Sharing_proj004.Models.UserViewModel
+@{
+    ViewData["Title"] = "info";
+}
+
+<h2>info</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mu-contact-area">
+
+                <!-- Start Contact Content -->
+                <div class="mu-contact-content">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="mu-contact-form-area">
+
+                                <form method="post" asp-action="Register" asp-controller="Account" class="mu-contact-form">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                                    <div class="form-group">
+                                        <span class="fa fa-envelope mu-contact-icon"></span>
+                                        <input type="text" asp-for="FirstName" class="form-control" placeholder="@Localizer["FirstName"].Value" required>
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="fa fa-envelope mu-contact-icon"></span>
+                                        <input type="text" asp-for="LastName" class="form-control" placeholder="@Localizer["LastName"].Value" required>
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="fa fa-envelope mu-contact-icon"></span>
+                                        <input type="email" asp-for="Email" class="form-control" placeholder="@Localizer["Email"].Value" required>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+
+
+                                    <button type="submit" class="mu-send-msg-btn"><span>@Localizer["save"].Value</span></button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Contact Content -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

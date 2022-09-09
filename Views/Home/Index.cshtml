@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Search Files</h1>
+    <br />
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="Uploads" asp-action="Results">
+                <div class="input-group mb-3 input-group-lg">
+                    <input type="text" class="form-control" name="Term" placeholder="file name" aria-label="File Name" aria-describedby="FileName" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="button-addon2"> Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

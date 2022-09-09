@@ -1,0 +1,72 @@
+﻿@model IEnumerable<File_Sharing_proj004.Models.UploadsViewModel>
+
+@{
+    ViewData["Title"] = "Browse";
+}
+
+<h1>Browse</h1>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="card mb-3">
+        <div class="row no-gutters col-md-12">
+            <div class="col-md-4">
+                <img width="100%" height="100%" src="~/uploads/@item.FileName" class="card-img lazyload" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            @item.OriginalFileName
+                        </div>
+                        <div class="col-3">
+                            Upload Date : @item.UploadDate
+
+                        </div>
+                        <div class="col-5">
+                            downloads Count : @item.DownloadCount
+                            <br />
+                            size : @{
+                                var size = item.Size / 1024;
+                                if (size < 1024)
+                                {
+                                    <span>@Math.Floor(size) kb</span>
+                                }
+                                else
+                                {
+                                    <span>@Math.Floor(size / 1024) Mb</span>
+                                }
+
+                            }
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="text-right">
+                                <a class="btn btn-success" asp-action="Download" asp-controller="Uploads" asp-route-id="@item.Id">Download</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+<div class="col-12 text-center">
+    @if ((ViewBag.currentPage - 1) > 0)
+    {
+        <a href="/Uploads/Browse/?requiredPage=@(ViewBag.currentPage-1)" class="btn btn-outline-primary btn-lg">Previous</a>
+
+    }
+
+
+    @if (ViewBag.currentPage<ViewBag.PagesCount)
+    {
+        <a href="/Uploads/Browse/?requiredPage=@(ViewBag.currentPage+1)" class="btn btn-outline-primary btn-lg">next</a>
+    }
+</div>
